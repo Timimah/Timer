@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/bootstrap.css">
+    <style>
+        .btn:hover{
+            background-color: grey;
+        }
+    </style>
+</head>
+<body class="bg-secondary">
+    <div>
+        <nav class="navbar p-2 navbar-brand-expand-sm bg-dark">
+            <a class="navbar-brand text-secondary" href="index.html"><strong><em>MyPrecious Time</em></strong></a>
+                <ul class="nav text-light ">
+                    <li class="nav-item btn p-0">
+                        <a href="clock.html" class="nav-link text-light" target="_self">Clock</a>
+                    </li>&nbsp;
+                    <li class="nav-item btn p-0">
+                        <a href="check_grade.html" class="nav-link text-light" target="_self">Countdown Timer</a>
+                    </li>&nbsp;
+                    <li class="nav-item">
+                        <button class="btn" onclick="getList()">
+                            <a href="index.html" class="nav-link text-light p-0" target="_self">Stopwatch</a>
+                        </button>
+                        &nbsp;
+                    </li>
+                </ul>
+        </nav>
+    </div>
+    <br><br>
+
+    <div class="mx-auto mt-5 w-50 card bg-dark">
+        <div class="text-center text-secondary mt-2">
+            <h4>Countdown Timer</h4>
+            <hr>
+        </div>
+        <div class="form input-group w-50 mx-auto mt-5">
+            <input class="form-control col-2 input-group fs-1 text-center" type="text/number" name="" id="hours" value="00">
+            <input class="form-control input-group fs-1 text-center" type="text/number" name="" id="minutes" value="00">
+            <input class="form-control input-group fs-1 text-center" type="text/number" name="" id="seconds" value="00">
+        </div></br>
+        <div class="form input-group w-25 mx-auto mb-5">
+            <div class="btn btn-group p-3" type="button" value="Start" onclick="start()"  id="">
+                <img src="icons/play.svg" alt="play button" srcset="">
+            </div>
+            <div class="btn btn-group p-3" type="button" value="Stop" onclick="stopTimer()" name="" id="">
+                <img src="icons/stop.svg" alt="stop button" srcset="">
+            </div>
+            <div class="btn btn-group p-3" type="button" value="Restart" onclick="reStart()" name="" id="">
+                <img src="icons/arrow-clockwise.svg" alt="stop button" srcset="">
+            </div>
+        </div>
+    </div></br>
+
+    <div class="card container w-75 bg-dark text-light">
+        <div class="text-center" >
+            <h3>
+                Time Lap
+                <hr>
+            </h3>
+            <span class="fs-3" id="stop_value"></span>
+            <hr>
+        </div>
+    </div>
+</body>
+<script>
+    hours.focus()
+    let t
+    let start = () =>{
+        if(!t){
+            t = setInterval(startCountDown(), 1000)
+        }
+    }
+
+    let startCountDown = () =>{
+        if (seconds.value >= 0){
+            seconds.value--
+            if (seconds.value <= 9){
+                seconds.value = '0' + seconds.value 
+            }
+        }
+        if (minutes.value <= 60  && seconds.value == 60){
+           minutes.value++
+           seconds.value = '00'
+           if (minutes.value <= 9){
+                minutes.value = '0' + minutes.value 
+            }
+        }
+        if (hours.value <= 24  && minutes.value == 60){
+           hours.value++
+           minutes.value = '00'
+           if (hours.value <= 9){
+                hours.value = '0' + hours.value 
+            }
+        } 
+        if (hours.value == 24){
+            alert("Timer complete")
+            stopCountDown()
+        }   
+        
+    }
+
+    stopCountDown = () =>{
+        clearTimeout(t)
+        stop_value.innerHTML += `${seconds.value} : ${minutes.value} : ${minutes.value} | `
+    }
+
+    let reStart = () =>{
+        seconds.value = '00'
+        minutes.value = '00'
+        hours.value = '00'
+    }
+</script>
+</html>
