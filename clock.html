@@ -24,9 +24,11 @@
                         <a href="countdown.html" class="nav-link text-light" target="_self">Countdown Timer</a>
                     </li>&nbsp;
                     <li class="nav-item">
-                        <button class="btn" onclick="getList()">
-                            <a href="index.html" class="nav-link text-light p-0" target="_self">Stopwatch</a>
-                        </button>
+                        <a href="index.html" class="nav-link text-light p-0" target="_self">Stopwatch</a>
+                        &nbsp;
+                    </li>
+                    <li class="nav-item">
+                        <a href="alarm.html" class="nav-link text-light p-0" target="_self">Alarm</a>
                         &nbsp;
                     </li>
                 </ul>
@@ -38,13 +40,63 @@
         <div class="text-center text-secondary mt-2">
             <h4>Clock</h4>
             <hr>
+            <div class="fs-3 text-light text-center" id="date_display">
+            </div>
         </div>
-        <div class="form input-group w-50 mx-auto my-5">
-            <input class="form-control col-2 input-group fs-1 text-center  text-light" type="text/number" name="" id="hours" value="00"  style="background-color: transparent;" disabled>
-            <input class="form-control input-group fs-1 text-center  text-light" type="text/number" name="" id="minutes" value="00"  style="background-color: transparent;" disabled>
-            <input class="form-control input-group fs-1 text-center  text-light" type="text/number" name="" id="seconds" value="00"  style="background-color: transparent;" disabled>
+        <div class="mx-auto row my-2" style="width: 20%;">
+            <div class="col-6 fs-1 text-center text-light p-0" name="" id="time" style="background-color: transparent; border: none;"></div>
+            
         </div>
+        
     </div></br>
-
 </body>
+<script>
+    date = new Date()
+    day = date.getDate()
+    month = date.getMonth()
+    year = date.getFullYear()
+    minute = date.getMinutes()
+    hour = date.getHours()
+    if (hour >=12 && hours <= 24){
+        time.innerHTML = `${hour} : ${minute} pm`
+
+    }
+    if(month == 0){
+        document.getElementById("date_display").innerHTML = `${day}st , January, ${year}`
+    }
+    else if(month == 1){
+        document.getElementById("date_display").innerHTML = `${day}nd , February, ${year}`
+    }
+    else if(month == 2){
+        document.getElementById("date_display").innerHTML = `${day}rd , March, ${year}`
+    }
+    else if(month == 3){
+        document.getElementById("date_display").innerHTML = `${day}th , April, ${year}`
+    }
+    else if(month == 4){
+        document.getElementById("date_display").innerHTML = `${day}th , May, ${year}`
+    }
+    else if(month == 5){
+        document.getElementById("date_display").innerHTML = `${day}th , June, ${year}`
+    }
+    else if(month == 6){
+        document.getElementById("date_display").innerHTML = `${day}th , July, ${year}`
+    }
+    else if(month == 7){
+        document.getElementById("date_display").innerHTML = `${day}th , August, ${year}`
+    }
+    else if(month == 8){
+        document.getElementById("date_display").innerHTML = `${day}th , September, ${year}`
+    }
+    else if(month == 9){
+        document.getElementById("date_display").innerHTML = `${day}th , October, ${year}`
+    }
+    else if(month == 10){
+        document.getElementById("date_display").innerHTML = `${day}th , November, ${year}`
+    }
+    else if(month == 11){
+        document.getElementById("date_display").innerHTML = `${day}th , December, ${year}`
+    }
+    
+</script>
 </html>
