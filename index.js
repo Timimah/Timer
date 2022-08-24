@@ -35,7 +35,7 @@ let t
 
     stopTimer = () =>{
         clearInterval(t)
-        stop_value.innerHTML += ` ${hours.value} : ${minutes.value} : ${seconds.value}| `
+        stop_value.innerHTML += `${hours.value} : ${minutes.value} : ${seconds.value}| `
     }
 
     let reStart = () =>{
