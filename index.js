@@ -6,27 +6,27 @@ let t
     }
 
     let startTimer = () =>{
-        if (seconds.value <= 60){
-            seconds.value++
-            if (seconds.value <= 9){
-                seconds.value = '0' + seconds.value 
+        if (seconds.innerHTML <= 60){
+            seconds.innerHTML++
+            if (seconds.innerHTML <= 9){
+                seconds.innerHTML = '0' + seconds.innerHTML 
             }
         }
-        if (minutes.value <= 60  && seconds.value == 60){
-           minutes.value++
-           seconds.value = '00'
-           if (minutes.value <= 9){
-                minutes.value = '0' + minutes.value 
+        if (minutes.innerHTML <= 60  && seconds.innerHTML == 60){
+           minutes.innerHTML++
+           seconds.innerHTML = '00'
+           if (minutes.innerHTML <= 9){
+                minutes.innerHTML = '0' + minutes.innerHTML 
             }
         }
-        if (hours.value <= 24  && minutes.value == 60){
-           hours.value++
-           minutes.value = '00'
-           if (hours.value <= 9){
-                hours.value = '0' + hours.value 
+        if (hours.innerHTML <= 24  && minutes.innerHTML == 60){
+           hours.innerHTML++
+           minutes.innerHTML = '00'
+           if (hours.innerHTML <= 9){
+                hours.innerHTML = '0' + hours.innerHTML 
             }
         } 
-        if (hours.value == 24){
+        if (hours.innerHTML == 24){
             alert("Timer complete")
             stopTimer()
         }   
@@ -35,11 +35,11 @@ let t
 
     stopTimer = () =>{
         clearInterval(t)
-        stop_value.innerHTML += `${hours.value} : ${minutes.value} : ${seconds.value}| `
+        stop_value.innerHTML += `${hours.innerHTML} : ${minutes.innerHTML} : ${seconds.innerHTML} | `
     }
 
     let reStart = () =>{
-        seconds.value = '00'
-        minutes.value = '00'
-        hours.value = '00'
+        seconds.innerHTML = '00'
+        minutes.innerHTML = '00'
+        hours.innerHTML = '00'
     }
