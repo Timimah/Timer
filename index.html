@@ -7,20 +7,26 @@
     <title>Document</title>
     <link rel="stylesheet" href="../bootstrap.css">
     <style>
-        .btn:hover{
-            background-color: grey;
+        body{
+            background: linear-gradient(to right,rgba(102, 68, 51, 0.5), rgba(102, 68, 51, 0.5)), url('timg4.webp') no-repeat fixed;
+            background-size: cover;
         }
-        /* .card{
-            border-radius: 60%;
-            height: 30em;
+        /* .btn:hover{
+            background-color: grey;
         } */
-        /* .alarms{ */
-            /* width: 30em; */
-            /* background-color: aliceblue; */
-        /* } */
+        h4, hr{
+            color: #643;
+        }
+        p{
+            font-size: 6em;
+        }
+        .card, .d-flex{
+            background-color: transparent;
+            border: none;
+        }
     </style>
 </head>
-<body class="bg-secondary"  onload="displayTime()">
+<body onload="displayTime()">
     <div class="modal-nav my-2">
         <div class="nav justify-content-center nav-tabs">
         <a class="nav-link text-light" href="#alarm" onclick="showAlarm()">Alarm</a>
@@ -29,39 +35,52 @@
         <a class="nav-link text-light" href="#" target="_self" onclick="showClock()">Clock</a>
         </div>
     </div>
-    <section id="alarm" class="row">
-        <div class="mx-3 w-50 card bg-dark">
-            <div class="text-center text-secondary mt-2">
-                <h4>Alarm</h4>
-                <hr>
-                <div class="fs-4 text-light text-center" id="date_display"></div>
-                <div id="set_alarm" class="row mx-5">
-                    <div class="fs-5 p-2 form-group">Set Alarm</div>
-                    <div class="row">
-                        <div class=" text-center form-control col bg-secondary">
-                            <p id="alarm_hours">0</p>
-                            <button id="increase_value" onclick="increaseHours()"><img src="icons/up-arrow.png" alt="" srcset="" width="2em" style="background-color: transparent"></button>
-                            <button id="decrease_value" onclick="decreaseHours()"><img src="icons/up-arrow.png" alt="" srcset="" width="2em" style="background-color: transparent"></button></button>
-                        </div>
-                        <div class=" text-center col form-control bg-secondary">
-                            <button id="increase_value1" onclick="increaseMinutes()">increase</button>
-                            <p id="alarm_minutes">00</p>
-                            <button id="decrease_value1" onclick="decreaseMinutes()">reduce</button>
-                        </div>
-                        <div class=" text-center col form-control bg-secondary">
-                            <button id="increase_value1" onclick="increaseSeconds()">increase</button>
-                            <p id="alarm_seconds">00</p>
-                            <button id="decrease_value1" onclick="decreaseSeconds()">reduce</button>
-                        </div>
-                        <div class="col-3 offset-1">
-                            <input class="my-3 text-center col form-control bg-secondary" type="text" id="hourOftheDay" placeholder="AM/PM" value="PM">
-                            <div>
+    <section id="alarm" class="text-center my-5 w-75">
+        <div class="fs-1 text-light" id="date_display"></div>
+        <div id="set_alarm" class="">
+            <div class="my-3 row">
+                <div class="col d-flex">
+                    <p class="text-light" id="alarm_hours">0</p>
+                    <div class="mt-4 pt-3">
+                        <button  class="btn" id="increase_value" onclick="increaseHours()">
+                            <img src="icons/up-arrow.png" width="25em" alt="" srcset="" style="background-color: transparent">
+                        </button><br>
+                        <button  class="btn" id="decrease_value" onclick="decreaseHours()">
+                            <img src="icons/down-arrow.png" width="25em" alt="" srcset="" style="background-color: transparent">
+                        </button>
                     </div>
-                    <button class="btn btn-light" type="submit" onclick="setAlarm()">Set Alarm</button>
                 </div>
-            </div>        
+                <div class="col d-flex">
+                    <p class="text-light" id="alarm_minutes">00</p>
+                    <div class="mt-4 pt-3">
+                        <button  class="btn" id="increase_value" onclick="increaseMinutes()">
+                            <img src="icons/up-arrow.png" width="25em" alt="" srcset="" style="background-color: transparent">
+                        </button><br>
+                        <button  class="btn" id="decrease_value" onclick="decreaseMinutes()">
+                            <img src="icons/down-arrow.png" width="25em" alt="" srcset="" style="background-color: transparent">
+                        </button>
+                    </div>
+                </div>
+                <div class="col d-flex">
+                    <p class="text-light" id="alarm_seconds">00</p>
+                    <div class="mt-4 pt-3">
+                        <button  class="btn" id="increase_value" onmousewheel="increaseSeconds()">
+                            <img src="icons/up-arrow.png" width="25em" alt="" srcset="" style="background-color: transparent">
+                        </button><br>
+                        <button  class="btn" id="decrease_value" on="decreaseSeconds()">
+                            <img src="icons/down-arrow.png" width="25em" alt="" srcset="" style="background-color: transparent">
+                        </button>
+                    </div>
+                </div>
+                <div class="col-2">
+                    <input class="text-center form-control mt-5" type="text" id="hourOftheDay" placeholder="AM/PM" value="PM">   
+                </div>
+                <div class="col" id="disp_questions">   
+                </div>
+            </div>
+        <button class="btn btn-light" type="submit" onclick="setAlarm()">Set Alarm</button>
         </div>
-        <div class="my-4x alarms" id="alarms">
+        <div class="alarms" id="alarms">
             <div id="_alarm">
                 <ul id="list" style="list-style-type: none;">
                     <!--alarm time   -->
@@ -71,26 +90,21 @@
         </div>
     </section>
 
-    <section id="clock" style="display: none;">
-        <div class="bg-dark text-light w-75 card mx-auto">
+    <section id="clock" style="display: none; font-size: 6em;">
+        <div class="text-light w-75 card mx-auto">
             <div id="dDate"></div>
-            <div class="card-title text-center text-secondary"><h3> Clock </h3> <hr></div>
-            <div class="text-center card-body" id="clockDate_display" style="font-size: 4em;"></div>
+            <div class="text-center card-body" id="clockDate_display"></div>
         </div>
     </section>
 
    <section id="countdown_timer" style="display: none;">
-        <div class="mx-auto mt-5 card bg-dark w-75">
-            <div class="text-center text-secondary mt-2">
-                <h4>Countdown Timer</h4>
-                <hr>
-            </div>
+        <div class="mx-auto mt-5 card w-75">
             <div class="form input-group w-75 mx-auto mt-5">
-                <input class="form-control col-2 input-group fs-1 text-center text-dark" type="text/number" name="" id="chours" value="00">
-                <input class="form-control input-group fs-1 text-center text-dark" type="text/number" name="" id="cminutes" value="00">
-                <input class="form-control input-group fs-1 text-center text-dark" type="text/number" name="" id="cseconds" value="00">
+                <input class="form-control col-2 input-group fs-1 text-center text-dark" type="text/number" name="" id="chours">
+                <input class="form-control input-group fs-1 text-center text-dark" type="text/number" name="" id="cminutes">
+                <input class="form-control input-group fs-1 text-center text-dark" type="text/number" name="" id="cseconds">
             </div></br>
-            <div class="form input-group w-auto row mx-auto mb-5 justify-content-center">
+            <div class="form input-group w-50 row mx-auto mb-5 justify-content-center">
                 <div class="btn btn-group col-4 p-3 justify-content-center" type="button" value="Start" onclick="start_counting()"  id="">
                     <img src="icons/play.svg" alt="play button" srcset="">
                 </div>
@@ -105,32 +119,26 @@
     </section>
 
     <section id="stopwatch" style="display: none;">
-        <div class="mx-auto mt-5 w-50 card bg-dark w-75">
-            <div class="text-center text-secondary mt-2">
-                <h4>Stopwatch</h4>
-                <hr>
+        <div class="mx-auto mt-5 w-50 w-75">
+                <div class="row border-0 w-auto mx-auto mt-5 text-light" name="">
+                    <p class="col" id="stopwatch_hr">00</p>
+                    <p class="col" id="stopwatch_min">00</p>
+                    <p class="col" id="stopwatch_sec">00</p>
+                    <p class="col" id="stopwatch_milsec">00</p>
             </div>
-            <div class="">
-                <div class="row fs-1 bg-secondary border-0 w-auto mx-auto mt-5 text-light" name="">
-                    <p class="col" id="swhours">00</p>:
-                    <p class="col" id="swminutes">00</p>:
-                    <p class="col" id="swseconds">00</p>
-                </div>
-            </br>
-            <div class="input-group w-auto row mx-auto mb-5 justify-content-center">
-                <div class="btn btn-group col-4 p-3" type="button" value="Start" onclick="start()"  id="">
+            <div class="w-50 row mx-auto mb-5 justify-content-center">
+                <div class="btn btn-group col-4 p-3" type="button" value="Start" onclick="startStopwatch()"  id="">
                     <img src="icons/play.svg" alt="play button" srcset="">
                 </div>
-                <div class="btn btn-group col-4 p-3" type="button" value="Stop" onclick="stopTimer()" name="" id="">
+                <div class="btn btn-group col-4 p-3" type="button" value="Stop" onclick="stopStopwatch()" name="" id="">
                     <img src="icons/stop.svg" alt="stop button" srcset="">
                 </div>
-                <div class="btn btn-group col-4 p-3" type="button" value="Restart" onclick="reStartsw()" name="" id="">
+                <div class="btn btn-group col-4 p-3" type="button" value="Restart" onclick="restartstopWatch()" name="" id="">
                     <img src="icons/arrow-clockwise.svg" alt="stop button" srcset="">
                 </div>
             </div>
-        </div></br>
     
-        <div class="card container w-75 bg-dark text-light">
+        <div class="card container w-75 text-light">
             <div class="text-center" >
                 <h3>
                     Time Lap
@@ -144,3 +152,4 @@
 </body>
 <script src="index.js"></script>
 </html>
+<!--  -->
